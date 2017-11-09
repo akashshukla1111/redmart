@@ -2,7 +2,7 @@
 
 *  _Please add the given jar for running the Junit test in your classpath_
 
-*  _ Go to the under src folder (cd src/), Build the .java files by command javac main/\*.java_
+*  _Go to the under src folder (cd src/), Build the .java files by command javac main/\*.java_
 
 *  _use the command **`cat spreadsheet.txt | java main/Spreadsheet`**_
  

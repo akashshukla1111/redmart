@@ -3,18 +3,8 @@ package main;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Date;
-/*
 
-3 2
-A1
-4 5 *
-A2
-A1 B2 / 2 +
-3
-39 B1 B2 * /
-
-		*/
-
+// this is starting file of the project
 public class Spreadsheet {
 
 	public static final String OUTPUT = "output_";
@@ -41,7 +31,7 @@ public class Spreadsheet {
 				spreadsheets[rw][cl].setInput(reader.readLine());
 			}
 		}
-		BufferedWriter outputWriter = new BufferedWriter(new FileWriter(OUTPUT+new Date().getTime()+ TXT));
+		BufferedWriter outputWriter = new BufferedWriter(new FileWriter(OUTPUT + new Date().getTime() + TXT));
 		outputWriter.write(indexs);
 		outputWriter.newLine();
 		for (int rw = 0; rw < r; rw++) {

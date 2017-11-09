@@ -1,16 +1,22 @@
 package main;
 
+// this file contain core business logic for the code
+// it using one recursive function to calculate the cell value
+// using the DP storing the value at same time so no need to again calculate the same value for same cell
 public class SpreadsheetImpl {
 
 	SpreadsheetUtils utils = new SpreadsheetUtils();
 
+	// this is recursive method which is called by the spreadsheet main class
 	public double recurSpreadSheet(SpreadResult[][] spreadsheets, int row, int col) {
 
 		SpreadResult cell = spreadsheets[row][col];
 
+		// checking the cell if already we calculated the cell value
 		if (cell.isVisited() && cell.getAns() != null) {
 			return cell.getAns();
 		}
+		// this is the bool parameter which is telling about the cycle dependency
 		else if (cell.isVisited() && cell.getAns() == null) {
 			return Double.MIN_VALUE;
 		}
@@ -19,6 +25,7 @@ public class SpreadsheetImpl {
 		}
 
 		String[] split = cell.getInput().split(" ");
+		//expression checking
 		if (SpreadsheetHelper.isExpression(split)) {
 			int expLenth = split.length;
 			String[] vals = new String[expLenth];
@@ -39,6 +46,7 @@ public class SpreadsheetImpl {
 			cell.setAns(result);
 			return result;
 		}
+		// if expression is false it means its a value or some other ref
 		else {
 			String cellVal = split[0];
 			double result = recurRefOrValue(spreadsheets, cellVal);
@@ -49,6 +57,7 @@ public class SpreadsheetImpl {
 		}
 	}
 
+	// this method return cell value or again call to other cell reference
 	private double recurRefOrValue(SpreadResult[][] spreadsheets, String cellVal) {
 		if (SpreadsheetHelper.isReference(cellVal)) {
 			String[] splits = SpreadsheetHelper.splitLetterDigits(cellVal);
